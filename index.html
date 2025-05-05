@@ -68,14 +68,22 @@
             </div>
             <div>
             <h2>Wähle das gewünschte Tempo: </h2>
-            <input type="number" id="tempo">
+            <input type="number" id="tempo" onchange="createSongList()">
             </div>
             <br>
-            <button class = "fixedWidth" id="button" onclick="getRandomSong()">Play!</button>
+            <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button>
 
-            <audio class = "fixedWidth" id="audio" controls onended="getRandomSong()">
+            <audio class = "fixedWidth" id="audio" controls onended="songFinished()">
                 <source id="audioSource" type="audio/mpeg">
             </audio>
+
+            <div>
+                <button id="button" onclick="playPrevious()">Vorheriger Song</button>
+                <button id="button" onclick="playNext()">Nächster Song</button>
+                <input type="checkbox" id="repeat"> Repeat
+            
+            </div>
+            
 
             <p id="status"></p>
         </div>
@@ -100,7 +108,60 @@
 
 
     <script>
+        var listIndex = 0;
         
+        var songList = [];
+
+        function songFinished()
+        {
+            if(!document.getElementById("repeat").checked)
+                playNext();
+            else
+                Play(songList[listIndex]);
+        }
+
+        function createSongList()
+        {
+            listIndex = 0;
+
+            songList = [];
+
+            var tempo = document.getElementById("tempo").value;
+            var files = document.getElementById("fileInput").files;
+
+            if(files == null || files.length == 0)
+            {
+                return;
+            }
+
+            for (var i = 0; i < files.length; i++) 
+            {
+                var file = files[i];
+                if (file.name.includes("(" + tempo + ")")) 
+                {
+                    songList.push(file);
+                }
+            }
+            
+            songList = RandomShuffle(songList);
+        }
+
+        function playNext()
+        {
+            
+            listIndex = (listIndex + 1) % songList.length;
+            Play(songList[listIndex]);
+        }
+
+        function playPrevious()
+        {
+            listIndex = (listIndex - 1);
+            if(listIndex < 0) 
+                listIndex = songList.length - 1;
+            Play(songList[listIndex]);
+            
+        }
+
         function getRandomSong() 
         {
             var tempo = document.getElementById("tempo").value;
@@ -135,17 +196,36 @@
                 return;
             }
 
+            Play(fileToPlay);
+        }
+
+        function RandomShuffle(array)
+        {
+            var i = array.length;
+            var outArray = [];
+
+            while(array.length > 0)
+            {
+                var randomIndex = Math.floor(Math.random() * array.length);
+                outArray.push(array[randomIndex]);
+                array.splice(randomIndex, 1);
+            }
+
+            return outArray;
+        }
+        
+        function Play(file)
+        {
             var audio = document.getElementById("audio");
             var source = document.getElementById("audioSource");
-            source.src = URL.createObjectURL(fileToPlay);
+            source.src = URL.createObjectURL(file);
             console.log(source.src);
             audio.load();
             audio.play();
 
             var status = document.getElementById("status");
-            status.innerHTML = "Now playing: " + fileToPlay.name;
+            status.innerHTML = "Now playing: " + file.name;
         }
-        
         
     </script>
 </body>
