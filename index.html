@@ -1,0 +1,134 @@
+<header>
+
+</header>
+
+<style>
+    body {
+      background-color: #a294c7;
+    }
+
+    #topBar {
+        background-color: #a294c7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #controlDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fixedWidth {
+        width: 300px;
+    }
+
+    #titleDiv {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    * {
+        text-align: center;
+        color: rgb(36, 36, 36);
+        margin-top: 10px;
+    }
+
+    div {
+        text-align: center;
+    }
+    
+    h1 {
+        color: rgb(36, 36, 36);
+      margin-left: 40px;
+      text-align: center;
+    }
+    </style>
+
+<body>
+    <div id="topDiv">
+    <div id="titleDiv">
+        <image src="logo.png" width="300" height="173"></image>
+        <div>
+            <h1>Crazy Boogie-Woogie Player</h1><br>
+            By Timo Loher
+        </div>
+        <image src="logo.png" width="300" height="173"></image>
+    </div>
+
+        <div id="controlDiv">
+
+            <div>
+            <h2>Choose your playlist:</h2>
+            <input id="fileInput" type="file" webkitdirectory directory> 
+            </div>
+            <div>
+            <h2>Choose the tempo of the songs you want: </h2>
+            <input type="number" id="tempo">
+            </div>
+            <br>
+            <button class = "fixedWidth" id="button" onclick="getRandomSong()">Play next Song</button>
+
+            <audio class = "fixedWidth" id="audio" controls onended="getRandomSong()">
+                <source id="audioSource" type="audio/mpeg">
+            </audio>
+
+            <p id="status"></p>
+        </div>
+    </div>
+
+    <script>
+        
+        function getRandomSong() 
+        {
+            var tempo = document.getElementById("tempo").value;
+
+            var files = document.getElementById("fileInput").files;
+
+            if(files == null || files.length == 0)
+            {
+                alert("Select a Playlist first");
+                return;
+            }
+            
+            var fileToPlay;
+            var startIndex = Math.floor(Math.random() * files.length);
+            var index = startIndex + 1;
+            while(index != startIndex)
+            {
+                var file = files[index];
+                if(file.name.includes("("+tempo+")"))
+                {
+                    fileToPlay = file;
+                    break; 
+                }
+
+                index++;
+                index %= files.length;
+            }
+
+            if(fileToPlay == null)
+            {
+                alert("No song found with the given tempo");
+                return;
+            }
+
+            var audio = document.getElementById("audio");
+            var source = document.getElementById("audioSource");
+            source.src = URL.createObjectURL(fileToPlay);
+            console.log(source.src);
+            audio.load();
+            audio.play();
+
+            var status = document.getElementById("status");
+            status.innerHTML = "Now playing: " + fileToPlay.name;
+        }
+        
+        
+    </script>
+</body>
