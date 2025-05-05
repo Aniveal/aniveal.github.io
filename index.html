@@ -64,15 +64,15 @@
         <div id="controlDiv">
 
             <div>
-            <h2>Choose your playlist:</h2>
+            <h2>Wähle deine Playlist:</h2>
             <input id="fileInput" type="file" webkitdirectory directory> 
             </div>
             <div>
-            <h2>Choose the tempo of the songs you want: </h2>
+            <h2>Wähle das gewünschte Tempo: </h2>
             <input type="number" id="tempo">
             </div>
             <br>
-            <button class = "fixedWidth" id="button" onclick="getRandomSong()">Play next Song</button>
+            <button class = "fixedWidth" id="button" onclick="getRandomSong()">Play!</button>
 
             <audio class = "fixedWidth" id="audio" controls onended="getRandomSong()">
                 <source id="audioSource" type="audio/mpeg">
@@ -80,7 +80,18 @@
 
             <p id="status"></p>
         </div>
+
+        <div style="margin-bottom:80px">
+            <h2>Anleitung:</h2>
+            <p>1. Klicke auf "browse" und wähle einen Ordner mit deiner Playlist. <br>Die Songs sollten das tempo im Dateinamen haben. </p>
+            <p>2. Wähle dein gewünschtes Tempo. </p>
+            <p>3. Klicke auf Play! Es werden nun zufällige Songs mit dem gewünschten tempo abgespielt.
+                <br>Es wird automatisch das nächste Lied abgespielt bis die Wiedergabe gestoppt wird.</p>
+            <p>4. Viel Spass!</p>
+            
+        </div>
     </div>
+
 
     <script>
         
@@ -102,7 +113,7 @@
             while(index != startIndex)
             {
                 var file = files[index];
-                if(file.name.includes("("+tempo+")"))
+                if(file.name.includes(tempo))
                 {
                     fileToPlay = file;
                     break; 
