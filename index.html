@@ -55,7 +55,7 @@
             <image src="logo.png" width="300" height="173"></image>
             <div>
                 <h1>Crazy Boogie-Woogie Player</h1><br>
-                By Timo Loher
+                von Timo Loher
             </div>
             <image src="logo.png" width="300" height="173"></image>
         </div>
@@ -85,7 +85,7 @@
             </div>
             
             
-            <div style="width:400px; border:4px solid black"><p id="status">Select a Playlist</p></div>
+            <div style="width:400px; border:4px solid black"><p id="status">Wähle eine Playlist</p></div>
             
         </div>
 
@@ -93,12 +93,12 @@
             <h2>Anleitung:</h2>
             
             <ol style="list-style-position: inside;text-align: left;">
-                <li>Klicke auf "browse" und wähle einen Ordner mit deiner Playlist. <br>
+                <li>Klicke auf "Durchsuchen" und wähle einen Ordner mit deiner Playlist. <br>
                     Die Songs sollten das tempo im Dateinamen haben eingeschlossen in klammern.<br>
                     z.B. "(46) Safronia B" oder "Crazy little thing called love (47)"
                 
                 <li>Wähle dein gewünschtes Tempo.
-                <li>Klicke auf Play! Es werden nun zufällige Songs mit dem gewünschten tempo abgespielt.<br>
+                <li>Los gehts!<br>
                     Es wird automatisch das nächste Lied abgespielt bis die Wiedergabe gestoppt wird.
                 <li>Viel Spass!
 
@@ -132,7 +132,7 @@
 
             if(files == null || files.length == 0)
             {
-                StatusAlert("Select a Playlist");
+                StatusAlert("Wähle eine Playlist");
                 return;
             }
 
@@ -147,7 +147,7 @@
 
             if(songList.length == 0)
             {
-                StatusAlert("No song found with the given tempo");
+                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
             
@@ -179,9 +179,9 @@
             if(songList.length == 0)
             {
                 if(document.getElementById("fileInput").files.length == 0)
-                    StatusAlert("Select a Playlist");
+                    StatusAlert("Wähle eine Playlist");
                 else 
-                    StatusAlert("No songs found with the given tempo");
+                    StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
         }
@@ -194,7 +194,7 @@
 
             if(files == null || files.length == 0)
             {
-                StatusAlert("Select Playlist");
+                StatusAlert("Wähle eine Playlist");
                 return;
             }
             
@@ -216,7 +216,7 @@
 
             if(fileToPlay == null)
             {
-                StatusAlert("No song found with the given tempo");
+                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
 
