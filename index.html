@@ -64,14 +64,14 @@
 
             <div>
             <h2>Wähle deine Playlist:</h2>
-            <input id="fileInput" type="file" webkitdirectory directory> 
+            <input id="fileInput" type="file" webkitdirectory directory onchange="createSongList()"> 
             </div>
             <div>
             <h2>Wähle das gewünschte Tempo: </h2>
-            <input type="number" id="tempo" onchange="createSongList()">
+            <input type="number" value="40" id="tempo" onchange="createSongList()">
             </div>
             <br>
-            <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button>
+            <!-- <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button> -->
 
             <audio class = "fixedWidth" id="audio" controls onended="songFinished()">
                 <source id="audioSource" type="audio/mpeg">
@@ -84,8 +84,9 @@
             
             </div>
             
-
-            <p id="status"></p>
+            
+            <div style="width:400px; border:4px solid black"><p id="status">Select a Playlist</p></div>
+            
         </div>
 
         <div style="width:600px; margin-bottom:80px; margin-top:200px">
@@ -131,6 +132,7 @@
 
             if(files == null || files.length == 0)
             {
+                StatusAlert("Select a Playlist");
                 return;
             }
 
@@ -142,24 +144,46 @@
                     songList.push(file);
                 }
             }
+
+            if(songList.length == 0)
+            {
+                StatusAlert("No song found with the given tempo");
+                return;
+            }
             
             songList = RandomShuffle(songList);
+            Load(songList[listIndex]);
         }
 
         function playNext()
         {
-            
+            CheckAviability();
+
             listIndex = (listIndex + 1) % songList.length;
             Play(songList[listIndex]);
         }
 
         function playPrevious()
         {
+            CheckAviability();
+
             listIndex = (listIndex - 1);
             if(listIndex < 0) 
                 listIndex = songList.length - 1;
             Play(songList[listIndex]);
             
+        }
+
+        function CheckAviability()
+        {
+            if(songList.length == 0)
+            {
+                if(document.getElementById("fileInput").files.length == 0)
+                    StatusAlert("Select a Playlist");
+                else 
+                    StatusAlert("No songs found with the given tempo");
+                return;
+            }
         }
 
         function getRandomSong() 
@@ -170,7 +194,7 @@
 
             if(files == null || files.length == 0)
             {
-                alert("Select a Playlist first");
+                StatusAlert("Select Playlist");
                 return;
             }
             
@@ -192,7 +216,7 @@
 
             if(fileToPlay == null)
             {
-                alert("No song found with the given tempo");
+                StatusAlert("No song found with the given tempo");
                 return;
             }
 
@@ -213,6 +237,18 @@
 
             return outArray;
         }
+
+        function Load(file)
+        {
+            var audio = document.getElementById("audio");
+            var source = document.getElementById("audioSource");
+            source.src = URL.createObjectURL(file);
+            console.log(source.src);
+            audio.load();
+
+            var status = document.getElementById("status");
+            status.innerHTML = "Now playing: " + file.name;
+        }
         
         function Play(file)
         {
@@ -225,6 +261,12 @@
 
             var status = document.getElementById("status");
             status.innerHTML = "Now playing: " + file.name;
+        }
+
+        function StatusAlert(message)
+        {
+            var status = document.getElementById("status");
+            status.innerHTML = message;
         }
         
     </script>
