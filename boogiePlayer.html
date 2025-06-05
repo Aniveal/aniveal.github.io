@@ -1,0 +1,272 @@
+<header>
+
+</header>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="./Header.js" type="text/javascript" defer></script>
+
+<style>
+    body {
+      background-color: #091724;
+    }
+
+    #controlDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+    }
+
+    .fixedWidth {
+        width: 300px;
+    }
+
+    .flex {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    #titleDiv {
+        width: 100%;
+        height: 20%;
+        background-color: #a294c7;
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid black;
+    }
+
+    div {
+        text-align: center;
+    }
+    
+    h1 {
+        color: rgb(240, 240, 240);
+      margin-left: 40px;
+      text-align: center;
+    }
+    </style>
+
+<body>
+    <header-component></header-component>
+
+    <div id="titleDiv">
+        <image style="flex:1" src="CrazyShakersLogo.png" height=90%></image>
+        <div style="flex:2">
+            <h1>Crazy Boogie-Woogie Player</h1>
+            von Timo Loher
+        </div>
+        <image style="flex:1" src="CrazyShakersLogo.png" height=90%></image>
+    </div>
+    
+    <div id="controlDiv">
+
+        <div>
+        <h2>Wähle deine Playlist:</h2>
+        <input id="fileInput" type="file" webkitdirectory directory onchange="createSongList()"> 
+        </div>
+        <div>
+        <h2>Wähle das gewünschte Tempo: </h2>
+        <input type="number" value="40" id="tempo" onchange="createSongList()">
+        </div>
+        <br>
+        <!-- <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button> -->
+
+        <audio class = "fixedWidth" id="audio" controls onended="songFinished()">
+            <source id="audioSource" type="audio/mpeg">
+        </audio>
+
+        <div>
+            <button id="button" onclick="playPrevious()">Vorheriger Song</button>
+            <button id="button" onclick="playNext()">Nächster Song</button>
+            <input type="checkbox" id="repeat"> Repeat
+        
+        </div>
+        
+        
+        <div style="width:400px; border:4px solid black"><p id="status">Wähle eine Playlist</p></div>
+        
+    </div>
+
+    <div style="width:600px; margin-bottom:80px; margin-top:200px">
+        <h2>Anleitung:</h2>
+        
+        <ol style="list-style-position: inside;text-align: left;">
+            <li>Klicke auf "Durchsuchen" und wähle einen Ordner mit deiner Playlist. <br>
+                Die Songs sollten das tempo im Dateinamen haben eingeschlossen in klammern.<br>
+                z.B. "(46) Safronia B" oder "Crazy little thing called love (47)"
+            
+            <li>Wähle dein gewünschtes Tempo.
+            <li>Los gehts!<br>
+                Es wird automatisch das nächste Lied abgespielt bis die Wiedergabe gestoppt wird.
+            <li>Viel Spass!
+
+        </ol>
+        
+    </div>
+
+
+    <script>
+        var listIndex = 0;
+        
+        var songList = [];
+
+        function songFinished()
+        {
+            if(!document.getElementById("repeat").checked)
+                playNext();
+            else
+                Play(songList[listIndex]);
+        }
+
+        function createSongList()
+        {
+            listIndex = 0;
+
+            songList = [];
+
+            var tempo = document.getElementById("tempo").value;
+            var files = document.getElementById("fileInput").files;
+
+            if(files == null || files.length == 0)
+            {
+                StatusAlert("Wähle eine Playlist");
+                return;
+            }
+
+            for (var i = 0; i < files.length; i++) 
+            {
+                var file = files[i];
+                if (file.name.includes("(" + tempo + ")")) 
+                {
+                    songList.push(file);
+                }
+            }
+
+            if(songList.length == 0)
+            {
+                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                return;
+            }
+            
+            songList = RandomShuffle(songList);
+            Load(songList[listIndex]);
+        }
+
+        function playNext()
+        {
+            CheckAviability();
+
+            listIndex = (listIndex + 1) % songList.length;
+            Play(songList[listIndex]);
+        }
+
+        function playPrevious()
+        {
+            CheckAviability();
+
+            listIndex = (listIndex - 1);
+            if(listIndex < 0) 
+                listIndex = songList.length - 1;
+            Play(songList[listIndex]);
+            
+        }
+
+        function CheckAviability()
+        {
+            if(songList.length == 0)
+            {
+                if(document.getElementById("fileInput").files.length == 0)
+                    StatusAlert("Wähle eine Playlist");
+                else 
+                    StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                return;
+            }
+        }
+
+        function getRandomSong() 
+        {
+            var tempo = document.getElementById("tempo").value;
+
+            var files = document.getElementById("fileInput").files;
+
+            if(files == null || files.length == 0)
+            {
+                StatusAlert("Wähle eine Playlist");
+                return;
+            }
+            
+            var fileToPlay;
+            var startIndex = Math.floor(Math.random() * files.length);
+            var index = startIndex + 1;
+            while(index != startIndex)
+            {
+                var file = files[index];
+                if(file.name.includes("(" + tempo + ")"))
+                {
+                    fileToPlay = file;
+                    break; 
+                }
+
+                index++;
+                index %= files.length;
+            }
+
+            if(fileToPlay == null)
+            {
+                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                return;
+            }
+
+            Play(fileToPlay);
+        }
+
+        function RandomShuffle(array)
+        {
+            var i = array.length;
+            var outArray = [];
+
+            while(array.length > 0)
+            {
+                var randomIndex = Math.floor(Math.random() * array.length);
+                outArray.push(array[randomIndex]);
+                array.splice(randomIndex, 1);
+            }
+
+            return outArray;
+        }
+
+        function Load(file)
+        {
+            var audio = document.getElementById("audio");
+            var source = document.getElementById("audioSource");
+            source.src = URL.createObjectURL(file);
+            console.log(source.src);
+            audio.load();
+
+            var status = document.getElementById("status");
+            status.innerHTML = "Now playing: " + file.name;
+        }
+        
+        function Play(file)
+        {
+            var audio = document.getElementById("audio");
+            var source = document.getElementById("audioSource");
+            source.src = URL.createObjectURL(file);
+            console.log(source.src);
+            audio.load();
+            audio.play();
+
+            var status = document.getElementById("status");
+            status.innerHTML = "Now playing: " + file.name;
+        }
+
+        function StatusAlert(message)
+        {
+            var status = document.getElementById("status");
+            status.innerHTML = message;
+        }
+        
+    </script>
+</body>

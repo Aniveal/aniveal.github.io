@@ -1,0 +1,23 @@
+
+
+h1 {
+    color: rgb(6, 21, 24);
+    text-align: center;
+    font-size: 500%;
+}
+
+h2 {
+    color: rgb(6, 21, 24);
+    text-align: center;
+    font-size: 300%;
+}
+
+.orange
+{
+    color: orange;
+}
+
+.small
+{
+    font-size: 50%;
+}
