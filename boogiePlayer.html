@@ -1,106 +1,115 @@
-<header>
-
-</header>
+<!DOCTYPE html>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="./Header.js" type="text/javascript" defer></script>
+<link rel="stylesheet" href="style.css">
 
 <style>
-    body {
-      background-color: #091724;
+
+
+    #titleDiv {
+        background-color: #091724;
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+
     }
 
     #controlDiv {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        background-color: #D3D3D3;
+        display:flex;
         align-items: center;
-        border: 2px solid black;
-    }
-
-    .fixedWidth {
-        width: 300px;
-    }
-
-    .flex {
-        flex: 1;
-        min-height: 0;
-        overflow: hidden;
-    }
-
-    #titleDiv {
-        width: 100%;
-        height: 20%;
-        background-color: #a294c7;
-        display: flex;
         justify-content: space-between;
-        border: 2px solid black;
+        flex-direction: column;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
-    div {
-        text-align: center;
+    #tutorialDiv
+    {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
     }
+
+    .flexDivCol
+    {
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .flexDivRow
+    {
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    .noZoom
+    {
+        -webkit-text-size-adjust:none;
+        text-size-adjust: none
+    }
+
+
     
-    h1 {
-        color: rgb(240, 240, 240);
-      margin-left: 40px;
-      text-align: center;
-    }
-    </style>
+</style>
 
-<body>
+<body class="lightGrayBackground" style="padding-bottom:20vh; margin:0;">
     <header-component></header-component>
 
     <div id="titleDiv">
-        <image style="flex:1" src="CrazyShakersLogo.png" height=90%></image>
-        <div style="flex:2">
-            <h1>Crazy Boogie-Woogie Player</h1>
-            von Timo Loher
-        </div>
-        <image style="flex:1" src="CrazyShakersLogo.png" height=90%></image>
+        <image src="CrazyShakersLogo.png" style="width:25%;">
+        <h1 class="yellowColor" style="width:40%; font-size: 4vw;">Crazy Boogie Player</h1>
+        <image src="CrazyShakersLogo.png" style="width:25%;">
     </div>
     
     <div id="controlDiv">
 
-        <div>
-        <h2>Wähle deine Playlist:</h2>
-        <input id="fileInput" type="file" webkitdirectory directory onchange="createSongList()"> 
+        <div class = "flexDivCol">
+            <h3 class="darkBlueColor">Wähle deine Playlist:</h3> 
+            <input id="fileInput" type="file" webkitdirectory directory onchange="createSongList()" style="font-size:130%;"> 
         </div>
-        <div>
-        <h2>Wähle das gewünschte Tempo: </h2>
-        <input type="number" value="40" id="tempo" onchange="createSongList()">
+        <div class = "flexDivCol">
+            <h3 class="darkBlueColor">Wähle das gewünschte Tempo: </h3>
+            <input type="number" value="40" id="tempo" onchange="createSongList()" style="font-size:120%; width:20%;">
         </div>
-        <br>
+
         <!-- <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button> -->
 
-        <audio class = "fixedWidth" id="audio" controls onended="songFinished()">
+        <audio id="audio" controls onended="songFinished()" style="width:30%; display: block; margin:30px; margin-bottom:0px;">
             <source id="audioSource" type="audio/mpeg">
         </audio>
 
-        <div>
-            <button id="button" onclick="playPrevious()">Vorheriger Song</button>
-            <button id="button" onclick="playNext()">Nächster Song</button>
-            <input type="checkbox" id="repeat"> Repeat
+        <div class = "flexDivRow" style="margin:30px; margin-top:0px; width:30%;">
+            <button id="button" onclick="playPrevious()" style="width:33%;">Vorheriger Song</button>
+            <button id="button" onclick="playNext()" style="width:33%;">Nächster Song</button>
+            <div style="width:33%;">
+                <input type="checkbox" id="repeat"> <label for=repeat>Repeat </label>
+            </div>
         
         </div>
         
         
-        <div style="width:400px; border:4px solid black"><p id="status">Wähle eine Playlist</p></div>
+        <div style="background-color:#FFE7BD; width:40vw; border:4px solid black; display:flex; align-items: center; justify-content: center;"><p id="status">Wähle eine Playlist</p></div>
         
     </div>
 
-    <div style="width:600px; margin-bottom:80px; margin-top:200px">
+    <div id="tutorialDiv">
         <h2>Anleitung:</h2>
         
         <ol style="list-style-position: inside;text-align: left;">
-            <li>Klicke auf "Durchsuchen" und wähle einen Ordner mit deiner Playlist. <br>
+            <li style="margin-top:10px;">Klicke auf "Durchsuchen" und wähle einen Ordner mit deiner Playlist. <br>
                 Die Songs sollten das tempo im Dateinamen haben eingeschlossen in klammern.<br>
                 z.B. "(46) Safronia B" oder "Crazy little thing called love (47)"
             
-            <li>Wähle dein gewünschtes Tempo.
-            <li>Los gehts!<br>
-                Es wird automatisch das nächste Lied abgespielt bis die Wiedergabe gestoppt wird.
-            <li>Viel Spass!
+            <li style="margin-top:10px;">Wähle dein gewünschtes Tempo.
+            <li style="margin-top:10px;">Los gehts! Es wird automatisch das nächste Lied abgespielt bis die Wiedergabe gestoppt wird.
+            <li style="margin-top:10px;">Viel Spass!
 
         </ol>
         
