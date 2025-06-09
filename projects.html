@@ -9,37 +9,78 @@
 <header-component></header-component>
 
 
-<body class="noMargin">
+<body class="noMargin lightGrayBackground">
 
-    <h1>Projekte</h1>
+    <h1 class="darkBlueColor">Projekte</h1>
 
-    <div class=content-list-horizontal>
-        <div class="list-item">
+    <div class=content-list-vertical>
+        <div class="content-list-vertical">
             <a href="./boogiePlayer.html"><h3>Boogie-Woogie Player</h3></a>
-            Ein tool für das Boogie-Woogie Training bei meinem Boogie-Woogie Verein, den <a href="https://crazyshakers.ch">Crazy Shakers</a>. Spielt Songs mit gegebenem Tempo automatisch ab. 
-            <br>
-            <br>
+            <p>
+            Ein tool für das Boogie-Woogie Training bei meinem Boogie-Woogie Verein, den <a href="https://crazyshakers.ch">Crazy Shakers</a>. Spielt automatisch Songs mit dem gewünschtem Tempo aus der riesigen Playlist mit über 1000 Songs.
+            Die Playlist ist aus rechtlichen und kostentechnischen Gründen nicht gehostet und muss separat heruntergeladen werden (die Vereinsmitglieder wissen wo, ansonsten mich anschreiben).
+            Erspart einem das manuelle Heraussuchen von Songs und erhöht die Abwechslung, da man nicht immer nur die obersten Songs abspielt. Habe ich vor allem zum lernen von <i>html, css</i> und <i>javascript</i> gemacht. 
+            </p>
             <a href="./boogiePlayer.html">Zum Boogie-Woogie Player</a>
+            
         </div>
 
-        <div class="list-item">
-            <h3>Twisted Descent Game</h3>
-            <a href="./boogiePlayer.html">Zum Projektablauf</a>
+        <div class="content-list-vertical">
+            <h3>Twisted Descent</h3>
+            <div class="noMargin">
+                <p>
+                Ein <b>Action-Rogue-Like</b> Game, das ich im Rahmen des <b><i>Game Development Lab</i></b> zusammen mit vier Mitstudenten geschrieben habe. 
+                Das Hauptfeature ist das Physik-basierte Kampfsystem, bei dem man mithilfe eines elastischen Fadens Gegner und Gegenstände durch die Gegend schleudern kann.
+                Das Spiel kann auf <a href="https://github.com/Aniveal/Twisted-Descent-Game">Github</a> gefunden und heruntergeladen werden.
+                </p>
+                <p>
+                Mein Beitrag ist vor allem der Algorithmus zur Erstellung der Levels. Dabei werden zuerst die Räume plaziert und anschliessend zufällig generiert. 
+                Für die Raumerstellung habe ich eine eigene Implementation des <b><i>Wave Function Collapse</i></b> Algorithmus verwendet. 
+                Schwierig dabei war vor allem zu garantieren, dass immer ein gültiger Weg zum Ausgang existiert.
+                Die Levels werden ausserdem komplexer und schwieriger, je weiter man kommt.
+                Geplant waren ausserdem verschiedene Biome mit unterschiedlichen Raumtypen, allerdings ist uns dann der Künstlerische Aufwand doch zu gross geworden. 
+                </p>
+                <p>
+                Daneben habe ich noch den Sound des Spieles gemacht. Es gibt eine recht simple 3D Audio-Engine, die sounds je nach abstand zum Spieler abspielt.
+                Den Soundtrack stammt ebenfalls von mir, und ich bin ziemlich stolz darauf! Ich habe ihn nicht nur selber komponiert, sondern auch das meiste selbst gespielt auf meinem midi-Keyboard.
+                </p>
+                <p>
+                Das Spiel wurde mit <b>MonoGame</b> in <b>C#</b> geschrieben. Für die Physik benutzten wir <b>Box2D</b>.
+                Der Rest ist selber implementiert.
+                </p>
+            </div>
+            <h4 class="darkBlueColor">Trailer:</h4>
+            <iframe width="1080" height="720"
+                src="https://www.youtube.com/embed/sELlfsgtPJE">
+            </iframe> 
+            <h4 class="darkBlueColor noMargin">Github Link:</h4>
+            <a href="https://github.com/Aniveal/Twisted-Descent-Game">Twisted Descent Game</a>
+
         </div>
 
-        <div class="list-item">
-            <h3>Pinball Game (Physics Demo)</h3>
-            <a href="./boogiePlayer.html">Zum Projektablauf</a>
+        <div class="content-list-vertical">
+            <div>
+                <a href="https://aniveal.itch.io/pop-the-bubble"><h3>Pop the Bubble!</h3></a>
+                <p>
+                    <b>Pop the Bubble!</b> ist ein kleines Point and Click Game, welches ich zusammen mit zwei Kollegen am <b><i>Global Game Jam 2025 </b></i>kreiert habe. 
+                    Es ist ein kurzes, humorvolles puzzle Game worin man versucht, eine Blase namens <i>Bubbly Mc-Bubbleface</i> auf 10 verschieden Arten zu zerstören.
+                    Das Gesamte Spiel haben wir in 48h geschrieben.
+                </p>
+                <p>
+                    Der Game Jam hat mir super gefallen, es war sehr erfrischend mal einfach drauf los zu programmieren ohne sich gedanken zu machen über Dinge wie Performance, Skalierbarkeit, Clean Code etc.
+                    Das Entwickeln hat auf jeden fall mehr Spass gemacht als das spielen des Spiels am schluss. Ich hoffe, bald wieder an einem Game Jam teilzunehmen. Falls du interesse hast, ein Team zu bilden, melde dich einfach bei mir ;)
+                </p>
+                <p>
+                    Das Spiel kann gratis gespielt werden auf Itch.io!
+                </p>
+                <iframe frameborder="0" src="https://itch.io/embed/3280324" width="552" height="167"><a href="https://aniveal.itch.io/pop-the-bubble">Pop the Bubble by Aniveal</a></iframe>
+            </div>
+            
         </div>
 
-        <div class="list-item">
-            <h3>Pop the Bubble!</h3>
-            <a href="./boogiePlayer.html">Zum Projektablauf</a>
-        </div>
-
-        <div class="list-item">
-            <h3>Terrain Generator</h3>
-            <a href="./boogiePlayer.html">Zum Projektablauf</a>
+        <div>
+            <h3>Unity Procedural Terrain Generator</h3>
+            <a href="./build/index.html">Zum Projekt</a>
         </div>
     </div>
 

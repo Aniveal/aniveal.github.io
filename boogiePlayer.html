@@ -71,31 +71,31 @@
     <div id="controlDiv">
 
         <div class = "flexDivCol">
-            <h3 class="darkBlueColor">Wähle deine Playlist:</h3> 
-            <input id="fileInput" type="file" webkitdirectory directory onchange="createSongList()" style="font-size:130%;"> 
+            <h3 class="darkBlueColor">Wähle deine Playlist: <input id="fileInput" type="file" style="font-size:70%;" webkitdirectory directory onchange="createSongList()"> </h3> 
+            
         </div>
         <div class = "flexDivCol">
-            <h3 class="darkBlueColor">Wähle das gewünschte Tempo: </h3>
-            <input type="number" value="40" id="tempo" onchange="createSongList()" style="font-size:120%; width:20%;">
+            <h3 class="darkBlueColor">Wähle das gewünschte Tempo: <input type="number" value="40" id="tempo" onchange="createSongList()" style="font-size:80%; width:20%;"></h3>
+            
         </div>
 
         <!-- <button class = "fixedWidth" id="button" onclick="playNext()">Start!</button> -->
 
-        <audio id="audio" controls onended="songFinished()" style="width:30%; display: block; margin:30px; margin-bottom:0px;">
+        <audio id="audio" style="width:70%; margin-top: 4vh;" controls onended="songFinished()">
             <source id="audioSource" type="audio/mpeg">
         </audio>
 
-        <div class = "flexDivRow" style="margin:30px; margin-top:0px; width:30%;">
-            <button id="button" onclick="playPrevious()" style="width:33%;">Vorheriger Song</button>
-            <button id="button" onclick="playNext()" style="width:33%;">Nächster Song</button>
+        <div class = "flexDivRow" style="margin:30px; margin-top:0px; width:70%; justify-content: center;">
+            <button id="button" onclick="playPrevious()" style="font-size:70%; width:33%;">Vorheriger Song</button>
+            <button id="button" onclick="playNext()" style="font-size:70%;width:33%;">Nächster Song</button>
             <div style="width:33%;">
-                <input type="checkbox" id="repeat"> <label for=repeat>Repeat </label>
+                <input type="checkbox" id="repeat" style="font-size:70%;width:33%;"> <label for=repeat>Repeat </label>
             </div>
         
         </div>
         
         
-        <div style="background-color:#FFE7BD; width:40vw; border:4px solid black; display:flex; align-items: center; justify-content: center;"><p id="status">Wähle eine Playlist</p></div>
+        <div style="background-color:#FFE7BD; width:40vw; border:4px solid black; display:flex; align-items: center; justify-content: center;"><p id="status">Status: Keine Playlist Gewählt</p></div>
         
     </div>
 
@@ -140,7 +140,7 @@
 
             if(files == null || files.length == 0)
             {
-                StatusAlert("Wähle eine Playlist");
+                StatusAlert("Status: Keine Playlist Gewählt");
                 return;
             }
 
@@ -155,7 +155,7 @@
 
             if(songList.length == 0)
             {
-                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                StatusAlert("Status: Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
             
@@ -187,9 +187,9 @@
             if(songList.length == 0)
             {
                 if(document.getElementById("fileInput").files.length == 0)
-                    StatusAlert("Wähle eine Playlist");
+                    StatusAlert("Status: Keine Playlist Gewählt");
                 else 
-                    StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                    StatusAlert("Status: Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
         }
@@ -202,7 +202,7 @@
 
             if(files == null || files.length == 0)
             {
-                StatusAlert("Wähle eine Playlist");
+                StatusAlert("Status: Keine Playlist Gewählt");
                 return;
             }
             
@@ -224,7 +224,7 @@
 
             if(fileToPlay == null)
             {
-                StatusAlert("Keine Songs gefunden mit dem gewünschten Tempo");
+                StatusAlert("Status: Keine Songs gefunden mit dem gewünschten Tempo");
                 return;
             }
 
@@ -255,7 +255,7 @@
             audio.load();
 
             var status = document.getElementById("status");
-            status.innerHTML = "Now playing: " + file.name;
+            status.innerHTML = "Status: Spielt " + file.name;
         }
         
         function Play(file)
@@ -268,7 +268,7 @@
             audio.play();
 
             var status = document.getElementById("status");
-            status.innerHTML = "Now playing: " + file.name;
+            status.innerHTML = "Status: Spielt " + file.name;
         }
 
         function StatusAlert(message)
