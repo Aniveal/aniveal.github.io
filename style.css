@@ -143,9 +143,77 @@ a:hover{
     padding-bottom:6vh;
 }
 
+.expandButton {
+    cursor: pointer;
+    width:7vw;
+    height:4vh;
+    font-size:70%;
+}
+
+.expandButtonDiv {
+    display:flex; 
+    align-content: center; 
+    justify-content: center; 
+    border:none;
+    margin:3vh 3vw;
+
+}
+
+.expandButton:hover {
+  background-color: #ccc;
+}
+
+.expandableExpanded {
+    display:block;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    animation-timing-function: ease;
+    animation-duration:1s;
+    animation-name: expand;
+}
+
+.expandableHidden {
+    display:block;
+    width:100%;
+    height:0;
+    overflow:hidden;
+    animation-timing-function: ease;
+    animation-duration:1s;
+    animation-name: collapse;
+}
+
+.textBox {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding:3vw;
+    background-color: #D3D3D3;
+    margin:0;
+}
+
+.textBox * 
+{
+    margin-left:10%;
+    margin-right:10%;
+
+}
+
 body {
     margin:0;
     padding:0;
     border:0;
     padding-bottom:20vw;
 }
+
+
+@keyframes collapse {
+    from {height:100vh;}
+    to {height:0;}
+  }
+
+@keyframes expand {
+    from {height:0;}
+    to {height:100vh;}
+  }
