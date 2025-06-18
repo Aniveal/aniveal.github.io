@@ -163,13 +163,20 @@ a:hover{
   background-color: #ccc;
 }
 
+.preExpand{
+    display:block;
+    width:100%;
+    height:0;
+    overflow:hidden;
+}
+
 .expandableExpanded {
     display:block;
     width:100%;
     height:100%;
     overflow:hidden;
     animation-timing-function: ease;
-    animation-duration:1s;
+    animation-duration:0.5s;
     animation-name: expand;
 }
 
@@ -179,7 +186,7 @@ a:hover{
     height:0;
     overflow:hidden;
     animation-timing-function: ease;
-    animation-duration:1s;
+    animation-duration:0.5s;
     animation-name: collapse;
 }
 

@@ -20,9 +20,13 @@ for (i = 0; i < coll.length; i++)
             content.classList.remove("expandableHidden");
             content.classList.add("expandableExpanded");
         
-        } else {
+        } else if (content.classList.contains("expandableExpanded")){
             content.classList.add("expandableHidden");
             content.classList.remove("expandableExpanded");
         }
+        else {
+            content.classList.add("expandableExpanded");
+        }
     });
+    
 } 
