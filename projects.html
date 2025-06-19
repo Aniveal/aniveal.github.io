@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./Header.js" type="text/javascript" defer></script>
     <script src="collapsible.js" defer></script>
+    <script src="showHideButton.js" defer></script>
+    <script src="jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,23 +19,14 @@
 
     <h1 class="darkBlueColor">Projekte</h1>
 
-    <h3>Gaming Related</h3>
-    <div class="expandButtonDiv">
-        <button class="expandButton active"> Show </button>
+    <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+        <h2>Gaming Related</h2> 
+        <input type="image" src="images/upArrow.png" style="height:1%; width:1%; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
     </div>
-    
+
     <div class="preExpand">
         <div class="content-list-vertical">
-            <div class="content-list-vertical">
-                <a href="./boogiePlayer.html"><h3>Boogie-Woogie Player</h3></a>
-                <p>
-                Ein tool für das Boogie-Woogie Training bei meinem Boogie-Woogie Verein, den <a href="https://crazyshakers.ch">Crazy Shakers</a>. Spielt automatisch Songs mit dem gewünschtem Tempo aus der riesigen Playlist mit über 1000 Songs.
-                Die Playlist ist aus rechtlichen und kostentechnischen Gründen nicht gehostet und muss separat heruntergeladen werden (die Vereinsmitglieder wissen wo, ansonsten mich anschreiben).
-                Erspart einem das manuelle Heraussuchen von Songs und erhöht die Abwechslung, da man nicht immer nur die obersten Songs abspielt. Habe ich vor allem zum lernen von <i>html, css</i> und <i>javascript</i> gemacht. 
-                </p>
-                <a href="./boogiePlayer.html">Zum Boogie-Woogie Player</a>
-                
-            </div>
+            
 
             <div class="content-list-vertical">
                 <h3>Twisted Descent</h3>
@@ -105,13 +98,22 @@
         </div>
     </div>
 
-    <h3>Schulprojekte</h3>
-    <div class="expandButtonDiv">
-        <button class="expandButton active"> Show </button>
+    <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+        <h2>Sonstige Software</h2> 
+        <input type="image" src="images/upArrow.png" style="height:1%; width:1%; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
     </div>
-    
     <div class="preExpand">
-        
+        <div class="content-list-vertical">
+            <div class="content-list-vertical">
+                <a href="./boogiePlayer.html"><h3>Boogie-Woogie Player</h3></a>
+                <p>
+                Ein tool für das Boogie-Woogie Training bei meinem Boogie-Woogie Verein, den <a href="https://crazyshakers.ch">Crazy Shakers</a>. Spielt automatisch Songs mit dem gewünschtem Tempo aus der riesigen Playlist mit über 1000 Songs.
+                Die Playlist ist aus rechtlichen und kostentechnischen Gründen nicht gehostet und muss separat heruntergeladen werden (die Vereinsmitglieder wissen wo, ansonsten mich anschreiben).
+                Erspart einem das manuelle Heraussuchen von Songs und erhöht die Abwechslung, da man nicht immer nur die obersten Songs abspielt. Habe ich vor allem zum lernen von <i>html, css</i> und <i>javascript</i> gemacht. 
+                </p>
+                <a href="./boogiePlayer.html">Zum Boogie-Woogie Player</a>
+            
+            </div>
         </div>
     </div>
 
