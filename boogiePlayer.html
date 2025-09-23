@@ -203,7 +203,7 @@
 
             for(var i = 0; i < fileList.length; i++)
             {
-                if(fileList[i].includes("(" + tempo + ")"))
+                if(fileList[i].includes("(" + tempo + ")") || fileList[i].includes("(" + (tempo + 1) + ")"))
                     songList.push(fileList[i]);
             }
                 
