@@ -8,7 +8,13 @@ lightGray: #D3D3D3 */
 
 html {
     background-color: #f4f4f4;
-    font-size: 180%;
+    font-size: 140%;
+}
+
+.blueBorder
+{
+    border: solid #091724;
+    border-radius: 5px;
 }
 
 #navHeader {
@@ -136,25 +142,40 @@ a:hover{
     align-items: center;    
     align-content: center;
     row-gap: 2vh;
+    margin-bottom:2vh;
+}
+
+.projectsTitle {
+    margin:auto; 
+    padding-left: 5vw; 
+    display:flex; 
+    align-items: 
+    center; 
+    justify-content: center;
 }
 
 .content-list-element {
     margin:auto;
     border-radius: 1vw;
     padding:1vw;
-    width:70vw;
+    width:80vw;
+    max-width:1000px;
     background-color: #FFE7BD;
     padding-left:6vw;
     padding-right:6vw;
-    padding-top:0;
+    padding-top:6vh;
     padding-bottom:6vh;
 }
 
-.expandButton {
-    cursor: pointer;
-    width:7vw;
-    height:4vh;
-    font-size:70%;
+.expandButton
+{
+    height:20px; 
+    width:20px; 
+    rotate:180deg; 
+    margin:6vh; 
+    padding:2vh;
+    border: solid #091724;
+    border-radius: 5px;
 }
 
 .expandButtonDiv {

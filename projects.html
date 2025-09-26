@@ -19,17 +19,17 @@
 
     <h1 class="darkBlueColor">Projekte</h1>
 
-    <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+    <div class="blueBorder" style="margin-bottom:5vh; margin-left:5vw; margin-right:5vw; display:flex; justify-content: center; align-items: center;" onclick="toggleContent(this.children[1], false);">   
         <h2>Gaming Related</h2> 
-        <input type="image" src="images/upArrow.png" style="height:30; width:30px; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
+        <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
     </div>
 
     <div class="preExpand">
         <div class="content-list-vertical">
 
-            <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+            <div class="blueBorder projectsTitle" onclick="toggleContent(this.children[1], false);">   
                 <h3>Unity Procedural Terrain Generator</h3> 
-                <input type="image" src="images/upArrow.png" style="height:30; width:30px; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
+                <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
             </div>
             <div class="preExpand">
                 <div class="content-list-vertical content-list-element">
@@ -195,9 +195,9 @@
             </div>
 
 
-            <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+            <div class="blueBorder projectsTitle" onclick="toggleContent(this.children[1], false);">   
                 <h3>Twisted Descent Game</h3> 
-                <input type="image" src="images/upArrow.png" style="height:30; width:30px; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
+                <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
             </div>
             <div class="preExpand">
                 <div class="content-list-vertical content-list-element">
@@ -234,9 +234,9 @@
                 </div>
             </div>
 
-            <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+            <div class="blueBorder projectsTitle" onclick="toggleContent(this.children[1], false);">   
                 <h3>Pop the Bubble!</h3> 
-                <input type="image" src="images/upArrow.png" style="height:30; width:30px; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
+                <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
             </div>
             <div class="preExpand">
                 <div class="content-list-vertical content-list-element">
@@ -260,12 +260,43 @@
                 </div>
             </div>
 
+            <div class="blueBorder projectsTitle" onclick="toggleContent(this.children[1], false);">   
+                <h3>Paper Racer Prototyp</h3> 
+                <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
+            </div>
+            <div class="preExpand">
+                <div class="content-list-vertical content-list-element">
+                    <div>
+                        <a href="https://aniveal.itch.io/pop-the-bubble"><h3>Paper Racer</h3></a>
+                        <p>
+                            Mein neuestes Projekt. Basierend auf dem Spiel <i>Racetrack</i>, welches ich früher mit Freunden gespielt habe.
+                            <a href="https://en.wikipedia.org/wiki/Racetrack_(game)">(Wikipedia)</a>. Es ist ein rundenbasiertes multiplayer Rennspiel.
+                        </p>
+                        <b>Features:</b>
+                        <ul>
+                            <li>Rundenbasiertes Autofahren mit Splines</li>
+                        </ul>
+                        <b>Geplant:</b>
+                        <ul>
+                            <li> Multiplayer </li>
+                            <li> Strecken Editor </li>
+                            <li> Items / Chaos Mechanik </li>
+                            <li> Verschiedene Stats/Fahrphysik </li>
+                        </ul>
+                        Probier den Prototyp under folgendem Link:
+                        
+                        TODO
+                    </div>
+                    
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div style="display:flex; flex-direction: row; align-items: center; justify-content: center;">   
+    <div class="blueBorder" style="margin-bottom:5vh; margin-left:5vw; margin-right:5vw; display:flex; justify-content: center; align-items: center;" onclick="toggleContent(this.children[1], false);">   
         <h2>Sonstige Software</h2> 
-        <input type="image" src="images/upArrow.png" style="height:30px; width:30px; rotate:180deg; margin:1vh; padding:2vh;" onclick="toggleContent(this, false);">
+        <input class="expandButton" type="image" src="images/upArrow.png" onclick="toggleContent(this, false);">
     </div>
     <div class="preExpand">
         <div class="content-list-vertical">
